@@ -9,6 +9,7 @@ print("===================================")
 print("ELIGE TU ROL:")
 print("1. PROFESOR")
 print("2. ESTUDIANTE")
+print("3. SALIR")
 opcion = ""
 while opcion !="1" and opcion != "2":
     opcion = input("ELIGE TU ROL(1 o 2):").strip()
