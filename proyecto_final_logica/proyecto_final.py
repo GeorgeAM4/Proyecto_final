@@ -19,5 +19,7 @@ if  opcion == "1":
 elif  opcion == "2":
     print("ELEGISTE ESTUDIANTE, AQUI PODRAS VER TUS NOTAS, TAREAS Y DEMAS")
     #AQUI FALTA COMPLETAR LAS OPCIONES DEL ALUMNO 
+elif opcion =="3":
+    print("SALIENDO DE LA PAGINA")
 else:
     print("OPCION NO VALIDA, REINICI LA PAGINA.")
