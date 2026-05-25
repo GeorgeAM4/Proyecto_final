@@ -1,3 +1,8 @@
+# SEGUNDA PARTE DEL TRABAJO FINAL:)
+ # AQUI ESTA EL BLOQUEO DE SEGURIDAD
+clave = ""
+while clave != "4502JORGE":  # AQUI ESTA LA CONTRASEÑA 
+    clave = input("INGRESE LA CONTRASEÑA: ").strip()
 print( "==================================")
 print("=SISTEMA DE GESTION DE ESTUDIANTES=")
 print("===================================")
