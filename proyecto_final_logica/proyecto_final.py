@@ -1,133 +1,219 @@
-# VARIABLES
+# ==========================
+# SISTEMA DE GESTION DE ESTUDIANTES
+# ==========================
+
 clave_admin = "4502JORGE"
-usuario_creado = ""
-clave_usuario = ""
 
-# PANTALLA DE BIENVENIDA
-print("Hola, bienvenido al sistema de gestión de estudiantes.")
-print("Por favor, seleccione una opción:")
-print("1. Iniciar sesión")
-print("2. Crear una cuenta")
-print("3. Salir del sistema")
+usuarios = {}
+estudiantes = []
+notas = {}
+asistencias = {}
 
-opcion_inicio = input("Ingrese una opción (1, 2, 3): ").strip()
+while True:
 
-# INICIAR SESIÓN
-if opcion_inicio == "1":
+    print("\n====================================")
+    print(" SISTEMA DE GESTION DE ESTUDIANTES")
+    print("====================================")
+    print("1. Iniciar sesión")
+    print("2. Crear cuenta")
+    print("3. Salir")
 
-    nombre_usuario = input("Ingrese su nombre: ").strip()
-    contraseña = input("Ingrese su contraseña: ").strip()
+    opcion_inicio = input("Seleccione una opción: ")
 
-    # ADMINISTRADOR
-    if contraseña.upper() == clave_admin:
+    if opcion_inicio == "3":
+        print("Gracias por usar el sistema.")
+        break
 
-        print("==================================")
-        print("= SISTEMA DE GESTIÓN DE ESTUDIANTES =")
-        print("==================================")
+    elif opcion_inicio == "2":
+
+        usuario = input("Nuevo usuario: ").upper()
+
+        if usuario in usuarios:
+            print("Ese usuario ya existe.")
+            continue
+
+        contraseña = input("Nueva contraseña: ")
+
+        usuarios[usuario] = contraseña
+
+        print("Cuenta creada correctamente.")
+
+    elif opcion_inicio == "1":
+
+        usuario = input("Usuario: ").upper()
+        contraseña = input("Contraseña: ")
+
+        acceso_correcto = False
+
+        if usuario == "JORGE" and contraseña == clave_admin:
+            acceso_correcto = True
+
+        elif usuario in usuarios and usuarios[usuario] == contraseña:
+            acceso_correcto = True
+
+        if not acceso_correcto:
+            print("Usuario o contraseña incorrectos.")
+            continue
 
         while True:
 
-            print("ELIGE TU ROL:")
-            print("1. PROFESOR")
-            print("2. ESTUDIANTE")
-            print("3. SALIR")
+            print("\nELIGE TU ROL")
+            print("1. Profesor")
+            print("2. Estudiante")
+            print("3. Salir")
 
-            opcion = input("Ingrese una opción (1, 2 o 3): ").strip()
+            rol = input("Seleccione una opción: ")
 
-            if opcion == "1":
+            # PROFESOR
+            if rol == "1":
 
-                print("MENÚ PROFESOR")
-                print("1. AGREGAR NUEVO ESTUDIANTE")
-                print("2. VER NOTAS DE LOS ESTUDIANTES")
-                print("3. REGISTRAR ASISTENCIA")
-                print("4. SUMAR PUNTOS AL PROMEDIO")
+                while True:
 
-                opcion_profesor = input("ELIGE UNA OPCIÓN: ").strip()
+                    print("\n===== MENU PROFESOR =====")
+                    print("1. Agregar estudiante")
+                    print("2. Registrar notas")
+                    print("3. Ver notas")
+                    print("4. Registrar asistencia")
+                    print("5. Ver asistencia")
+                    print("6. Ver cantidad de estudiantes")
+                    print("7. Sumar puntos a promedio")
+                    print("8. Salir")
 
-                if opcion_profesor == "1":
+                    opcion = input("Seleccione una opción: ")
 
-                    nombre = input("INGRESA EL NOMBRE DEL NUEVO ESTUDIANTE: ").strip().upper()
+                    if opcion == "1":
 
-                    print(f"Estudiante {nombre} agregado.")
+                        nombre = input("Nombre del estudiante: ").upper()
 
-                elif opcion_profesor == "2":
+                        if nombre not in estudiantes:
+                            estudiantes.append(nombre)
+                            notas[nombre] = 0
+                            asistencias[nombre] = "Sin registrar"
 
-                    print("AQUÍ PODRÁS VER LAS NOTAS DE LOS ESTUDIANTES.")
+                        print("Estudiante agregado.")
 
-                elif opcion_profesor == "3":
+                    elif opcion == "2":
 
-                    print("AQUÍ PODRÁS REGISTRAR LA ASISTENCIA DE LOS ESTUDIANTES.")
+                        nombre = input("Nombre del estudiante: ").upper()
 
-                elif opcion_profesor == "4":
+                        if nombre not in estudiantes:
+                            print("Estudiante no encontrado.")
+                            continue
 
-                    promedio = float(input("INGRESE EL PROMEDIO ACTUAL: "))
-                    puntos = float(input("INGRESE LOS PUNTOS A SUMAR: "))
+                        n1 = float(input("Nota 1: "))
+                        n2 = float(input("Nota 2: "))
+                        n3 = float(input("Nota 3: "))
 
-                    promedio += puntos
+                        promedio = (n1 + n2 + n3) / 3
 
-                    print(f"NUEVO PROMEDIO: {promedio}")
+                        notas[nombre] = promedio
 
-                else:
+                        print("Promedio guardado:", promedio)
 
-                    print("OPCIÓN INVÁLIDA.")
+                    elif opcion == "3":
 
-            elif opcion == "2":
+                        print("\n===== NOTAS =====")
 
-                print("MENÚ ESTUDIANTE")
-                print("1. NOTAS")
-                print("2. ASISTENCIA")
-                print("3. TAREAS")
+                        for estudiante, nota in notas.items():
+                            print(estudiante, "->", nota)
 
-                opcion_estudiante = input("ELIGE UNA OPCIÓN: ").strip()
+                    elif opcion == "4":
 
-                if opcion_estudiante == "1":
+                        nombre = input("Nombre del estudiante: ").upper()
 
-                    print("CALIFICACIONES")
+                        if nombre not in estudiantes:
+                            print("Estudiante no encontrado.")
+                            continue
 
-                elif opcion_estudiante == "2":
+                        estado = input("Presente o Ausente: ")
 
-                    print("ASISTENCIA")
+                        asistencias[nombre] = estado
 
-                elif opcion_estudiante == "3":
+                        print("Asistencia registrada.")
 
-                    print("TAREAS")
+                    elif opcion == "5":
 
-                else:
+                        print("\n===== ASISTENCIA =====")
 
-                    print("OPCIÓN INVÁLIDA.")
+                        for estudiante, estado in asistencias.items():
+                            print(estudiante, "->", estado)
 
-            elif opcion == "3":
+                    elif opcion == "6":
 
-                print("SALIENDO DEL SISTEMA. ¡GRACIAS POR VISITARNOS!")
+                        print("Cantidad de estudiantes:", len(estudiantes))
+
+                    elif opcion == "7":
+
+                        nombre = input("Nombre del estudiante: ").upper()
+
+                        if nombre not in notas:
+                            print("Estudiante no encontrado.")
+                            continue
+
+                        puntos = float(input("Puntos a sumar: "))
+
+                        notas[nombre] += puntos
+
+                        print("Nuevo promedio:", notas[nombre])
+
+                    elif opcion == "8":
+
+                        break
+
+                    else:
+
+                        print("Opción inválida.")
+
+            # ESTUDIANTE
+            elif rol == "2":
+
+                while True:
+
+                    print("\n===== MENU ESTUDIANTE =====")
+                    print("1. Ver mis notas")
+                    print("2. Ver mi asistencia")
+                    print("3. Ver promedio final")
+                    print("4. Salir")
+
+                    opcion = input("Seleccione una opción: ")
+
+                    if opcion == "1":
+
+                        if usuario in notas:
+                            print("Nota:", notas[usuario])
+                        else:
+                            print("No hay notas registradas.")
+
+                    elif opcion == "2":
+
+                        if usuario in asistencias:
+                            print("Asistencia:", asistencias[usuario])
+                        else:
+                            print("No hay asistencia registrada.")
+
+                    elif opcion == "3":
+
+                        if usuario in notas:
+                            print("Promedio final:", notas[usuario])
+                        else:
+                            print("No hay promedio registrado.")
+
+                    elif opcion == "4":
+
+                        break
+
+                    else:
+
+                        print("Opción inválida.")
+
+            elif rol == "3":
+
                 break
 
             else:
 
-                print("OPCIÓN INVÁLIDA.")
-
-    # USUARIO CREADO
-    elif nombre_usuario == usuario_creado and contraseña == clave_usuario:
-
-        print(f"Bienvenido {nombre_usuario}")
+                print("Opción inválida.")
 
     else:
 
-        print("USUARIO O CONTRASEÑA INCORRECTOS.")
-
-# CREAR CUENTA
-elif opcion_inicio == "2":
-
-    usuario_creado = input("Ingrese un nombre de usuario: ").strip()
-    clave_usuario = input("Ingrese una nueva contraseña: ").strip()
-
-    print("CUENTA CREADA CORRECTAMENTE.")
-
-# SALIR
-elif opcion_inicio == "3":
-
-    print("SALIENDO DEL SISTEMA. ¡GRACIAS POR VISITARNOS!")
-
-# OPCIÓN INVÁLIDA
-else:
-
-    print("OPCIÓN INVÁLIDA.")
+        print("Opción inválida.")
