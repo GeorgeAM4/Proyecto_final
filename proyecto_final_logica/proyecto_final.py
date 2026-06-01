@@ -10,8 +10,8 @@ asistencias = {}
 while True:
 
     print("\n====================================")
-    print(" SISTEMA DE GESTION DE ESTUDIANTES")
-    print("====================================")
+    print(" ==SISTEMA DE GESTION DE ESTUDIANTES==")
+    print("======================================")
     print("1. Iniciar sesión")
     print("2. Crear cuenta")
     print("3. Salir")
@@ -76,7 +76,7 @@ while True:
                     print("6. Ver cantidad de estudiantes")
                     print("7. Sumar puntos a promedio")
                     print("8. Salir")
-
+                    print("9.- Editar notas")
                     opcion = input("Seleccione una opción: ")
 
                     if opcion == "1":
@@ -155,9 +155,21 @@ while True:
                         print("Nuevo promedio:", notas[nombre])
 
                     elif opcion == "8":
-
+                        print("Saliendo....")
                         break
 
+                    elif opcion == "9":
+                        n1 = float(input("Nota 1: "))
+                        n2 = float(input("Nota 2: "))
+                        n3 = float(input("Nota 3: "))
+
+                        promedio = (n1 + n2 + n3) / 3
+
+                        notas[nombre] = promedio
+                        print(nombre)
+                        print("nota actualizada con exito")
+
+                        print("Promedio guardado:", promedio)
                     else:
 
                         print("Opción inválida.")
@@ -173,7 +185,7 @@ while True:
                     print("3. Ver promedio final")
                     print("4. Salir")
 
-                    opcion = input("SELECCIONE UNA OPCION: ")
+                    opcion = input("Seleccione una opción: ")
 
                     if opcion == "1":
 
@@ -187,14 +199,14 @@ while True:
                         if usuario in asistencias:
                             print("Asistencia:", asistencias[usuario])
                         else:
-                            print("FALTA REGISTRAR ASISTENCIAS.")
+                            print("FALTA REGISTRARA ASISTENCIAS DE ESTUDIANTES.")
 
                     elif opcion == "3":
 
                         if usuario in notas:
                             print("Promedio final:", notas[usuario])
                         else:
-                            print("FALTA PONER PROMEDIOS.")
+                            print("FALTA PONER NOTAS DE LOS ESTUDIANTES")
 
                     elif opcion == "4":
 
