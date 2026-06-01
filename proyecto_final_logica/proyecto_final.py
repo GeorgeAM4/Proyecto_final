@@ -1,6 +1,4 @@
-# ==========================
-# SISTEMA DE GESTION DE ESTUDIANTES
-# ==========================
+
 
 clave_admin = "4502JORGE"
 
@@ -175,28 +173,28 @@ while True:
                     print("3. Ver promedio final")
                     print("4. Salir")
 
-                    opcion = input("Seleccione una opción: ")
+                    opcion = input("SELECCIONE UNA OPCION: ")
 
                     if opcion == "1":
 
                         if usuario in notas:
                             print("Nota:", notas[usuario])
                         else:
-                            print("No hay notas registradas.")
+                            print("FALTA REGISTRAR NOTAS.")
 
                     elif opcion == "2":
 
                         if usuario in asistencias:
                             print("Asistencia:", asistencias[usuario])
                         else:
-                            print("No hay asistencia registrada.")
+                            print("FALTA REGISTRAR ASISTENCIAS.")
 
                     elif opcion == "3":
 
                         if usuario in notas:
                             print("Promedio final:", notas[usuario])
                         else:
-                            print("No hay promedio registrado.")
+                            print("FALTA PONER PROMEDIOS.")
 
                     elif opcion == "4":
 
