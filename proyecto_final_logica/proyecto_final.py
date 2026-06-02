@@ -1,9 +1,8 @@
 
-
 clave_admin = "4502JORGE"
 
 usuarios = {}
-estudiantes = []
+estudiantes = {}
 notas = {}
 asistencias = {}
 
@@ -24,22 +23,22 @@ while True:
 
     elif opcion_inicio == "2":
 
-        usuario = input("Nuevo usuario: ").upper()
+        usuario = input("Nuevo usuario: ").upper().strip()
 
         if usuario in usuarios:
             print("Ese usuario ya existe.")
-            continue
+        else:
 
-        contraseña = input("Nueva contraseña: ")
+            contraseña = input("Nueva contraseña: ").upper()
 
-        usuarios[usuario] = contraseña
+            usuarios[usuario] = contraseña
 
         print("Cuenta creada correctamente.")
 
     elif opcion_inicio == "1":
 
-        usuario = input("Usuario: ").upper()
-        contraseña = input("Contraseña: ")
+        usuario = input("Usuario: ").upper().strip().split()
+        contraseña = input("Contraseña: ").strip()
 
         acceso_correcto = False
 
