@@ -1,4 +1,3 @@
-
 clave_admin = "4502JORGE"
 
 usuarios = {}
@@ -101,10 +100,13 @@ while True:
                         n2 = float(input("Nota 2: "))
                         n3 = float(input("Nota 3: "))
 
+                        # Validar que las notas estén entre 0 y 100
+                        if not (0 <= n1 <= 100) or not (0 <= n2 <= 100) or not (0 <= n3 <= 100):
+                            print("Error, esta nota no esta dentro del rango...")
+                            continue
+
                         promedio = (n1 + n2 + n3) / 3
-
                         notas[nombre] = promedio
-
                         print("Promedio guardado:", promedio)
 
                     elif opcion == "3":
@@ -222,6 +224,10 @@ while True:
             else:
 
                 print("Opción inválida.")
+
+    else:
+
+        print("Opción inválida.")
 
     else:
 
